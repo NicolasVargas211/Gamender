@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamender - Página Principal</title>
+    <title>OAuth Redirect</title>
 </head>
 <body>
-    <h1>Bienvenido a Gamender</h1>
-    <p>Gamender es una aplicación para encontrar amigos para jugar. Desliza a la derecha para hacer amigos y a la izquierda para rechazar.</p>
+    <h1>OAuth Redirect Page</h1>
+    <script>
+        // Obtener el código de autorización de la URL
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+
+        if (code) {
+            // Redirigir al servidor local con el código de autorización
+            window.location.href = `http://localhost:8080/oauth-callback?code=${code}`;
+        } else {
+            document.body.innerHTML = '<h1>Error: No se encontró el código de autorización</h1>';
+        }
+    </script>
 </body>
 </html>
